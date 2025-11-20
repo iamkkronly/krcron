@@ -21,8 +21,8 @@ export async function GET() {
 
       const jobPromises = jobs.map(async (job: any) => {
         const lastChecked = job.lastChecked ? new Date(job.lastChecked) : new Date(0);
-        // Default to 5 if not set, but we will respect the job's interval
-        const intervalMs = (job.interval || 5) * 60 * 1000;
+        // Default to 3 if not set, but we will respect the job's interval
+        const intervalMs = (job.interval || 3) * 60 * 1000;
 
         if (now.getTime() - lastChecked.getTime() >= intervalMs) {
           console.log(`Pinging ${job.url}...`);
