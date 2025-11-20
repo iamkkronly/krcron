@@ -81,7 +81,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         {/* Add New Monitor */}
         <div className="bg-white dark:bg-gray-800 shadow sm:rounded-lg mb-8 p-6">
-          <h2 className="text-lg font-medium leading-6 mb-4">Add New Monitor (5min interval)</h2>
+          <h2 className="text-lg font-medium leading-6 mb-4">Add New Monitor (3min interval)</h2>
           <form onSubmit={handleSubmit} className="flex gap-4 items-end">
             <div className="flex-grow">
               <label htmlFor="url" className="block text-sm font-medium text-gray-700 dark:text-gray-300">

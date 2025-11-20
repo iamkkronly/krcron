@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
     const newJob = await CronJob.create({
       url,
-      interval: 5 // default 5 min as per request
+      interval: 3 // default 3 min as per request
     });
 
     return NextResponse.json({ job: newJob }, { status: 201 });
