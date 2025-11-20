@@ -6,7 +6,11 @@ interface ConnectionPayload {
     CronJob: mongoose.Model<any>;
 }
 
-let connections: ConnectionPayload[] = [];
+declare global {
+  var _mongoConnections: ConnectionPayload[] | undefined;
+}
+
+let connections: ConnectionPayload[] = global._mongoConnections || [];
 
 /**
  * Connects to all configured MongoDB URIs.
@@ -36,6 +40,12 @@ export const connectDB = async (): Promise<ConnectionPayload[]> => {
   }
 
   connections = newConnections;
+
+  // Cache in global scope for HMR
+  if (process.env.NODE_ENV !== 'production') {
+    global._mongoConnections = connections;
+  }
+
   return connections;
 };
 

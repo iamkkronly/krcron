@@ -15,19 +15,14 @@ async function runCron() {
 
     if (conns.length === 0) {
         console.log('No DB connections. Ensure MONGODB_URIS is set in .env or .env.local');
-        // We don't exit because maybe env vars are loaded later or it's intermittent?
-        // Actually for a worker, we probably want to keep retrying or exit.
         return;
     }
 
     for (const { CronJob } of conns) {
-      // Find jobs that need to be run.
-      // Logic: lastChecked + interval < now OR lastChecked is null
-      // interval is in minutes.
       const now = new Date();
       const jobs = await CronJob.find({});
 
-      for (const job of jobs) {
+      const jobPromises = jobs.map(async (job: any) => {
         const lastChecked = job.lastChecked ? new Date(job.lastChecked) : new Date(0);
         const intervalMs = (job.interval || 5) * 60 * 1000;
 
@@ -52,7 +47,9 @@ async function runCron() {
              console.log(`[DOWN] ${job.url} - ${err.message}`);
           }
         }
-      }
+      });
+
+      await Promise.all(jobPromises);
     }
   } catch (error) {
     console.error('Cron worker error:', error);
