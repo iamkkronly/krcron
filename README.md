@@ -4,7 +4,7 @@ A Next.js based Cron Job monitoring website (similar to UptimeRobot).
 
 ## Features
 
-- **Monitor URLs:** Add HTTP/HTTPS URLs to be monitored every 5 minutes.
+- **Monitor URLs:** Add HTTP/HTTPS URLs to be monitored every 3 minutes.
 - **Top 10 Dashboard:** View the top 10 most recently added/active monitors on the homepage.
 - **Multi-DB Support:** Distribute data across multiple MongoDB instances.
 - **No Deletion:** By design, monitors cannot be deleted by users.

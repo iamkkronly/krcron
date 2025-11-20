@@ -15,5 +15,5 @@ export const CronJobSchema: Schema = new Schema({
   lastChecked: { type: Date },
   status: { type: String, default: 'PENDING' },
   responseTime: { type: Number, default: 0 },
-  interval: { type: Number, default: 5 }
+  interval: { type: Number, default: 3 }
 });

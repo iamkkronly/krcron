@@ -24,7 +24,7 @@ async function runCron() {
 
       const jobPromises = jobs.map(async (job: any) => {
         const lastChecked = job.lastChecked ? new Date(job.lastChecked) : new Date(0);
-        const intervalMs = (job.interval || 5) * 60 * 1000;
+        const intervalMs = (job.interval || 3) * 60 * 1000;
 
         if (now.getTime() - lastChecked.getTime() >= intervalMs) {
           console.log(`Pinging ${job.url}...`);
